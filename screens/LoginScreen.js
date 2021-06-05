@@ -21,7 +21,8 @@ const LoginScreen = ({navigation}) => {
     }, []);
 
     const signIn = () => {
-        
+        auth.signInWithEmailAndPassword(email, password)
+            .catch((error) => alert(error));
     }
 
     return (
@@ -37,8 +38,8 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={(text) => setEmail(text)} />
                 <Input placeholder='Password' secureTextEntry type="Password"
                 value={password}
-                    onChangeText={(text) => setPassword(text)}/>
-
+                    onChangeText={(text) => setPassword(text)}
+                    onSubmitEditing={signIn} />
             </View>
             <Button containerStyle={styles.button} onPress={signIn} title="Login" />
             <Button onPress={() => navigation.navigate("Register")} containerStyle={styles.button} type="outline" title="Register"/>
